@@ -10,8 +10,12 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as DescubraRouteImport } from './routes/descubra'
 import { Route as LinhaDoTempoRouteImport } from './routes/linha-do-tempo'
+import { Route as MapaRouteImport } from './routes/mapa'
 import { Route as PlaylistsRouteImport } from './routes/playlists'
+import { Route as ReferenciasRouteImport } from './routes/referencias'
+import { Route as SobreRouteImport } from './routes/sobre'
 import { Route as MovimentosIndexRouteImport } from './routes/movimentos.index'
 import { Route as MovimentosSlugRouteImport } from './routes/movimentos.$slug'
 
@@ -20,14 +24,34 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DescubraRoute = DescubraRouteImport.update({
+  id: '/descubra',
+  path: '/descubra',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const LinhaDoTempoRoute = LinhaDoTempoRouteImport.update({
   id: '/linha-do-tempo',
   path: '/linha-do-tempo',
   getParentRoute: () => rootRouteImport,
 } as any)
+const MapaRoute = MapaRouteImport.update({
+  id: '/mapa',
+  path: '/mapa',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const PlaylistsRoute = PlaylistsRouteImport.update({
   id: '/playlists',
   path: '/playlists',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ReferenciasRoute = ReferenciasRouteImport.update({
+  id: '/referencias',
+  path: '/referencias',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SobreRoute = SobreRouteImport.update({
+  id: '/sobre',
+  path: '/sobre',
   getParentRoute: () => rootRouteImport,
 } as any)
 const MovimentosIndexRoute = MovimentosIndexRouteImport.update({
@@ -43,23 +67,35 @@ const MovimentosSlugRoute = MovimentosSlugRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/descubra': typeof DescubraRoute
   '/linha-do-tempo': typeof LinhaDoTempoRoute
+  '/mapa': typeof MapaRoute
   '/playlists': typeof PlaylistsRoute
+  '/referencias': typeof ReferenciasRoute
+  '/sobre': typeof SobreRoute
   '/movimentos/$slug': typeof MovimentosSlugRoute
   '/movimentos/': typeof MovimentosIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/descubra': typeof DescubraRoute
   '/linha-do-tempo': typeof LinhaDoTempoRoute
+  '/mapa': typeof MapaRoute
   '/playlists': typeof PlaylistsRoute
+  '/referencias': typeof ReferenciasRoute
+  '/sobre': typeof SobreRoute
   '/movimentos/$slug': typeof MovimentosSlugRoute
   '/movimentos': typeof MovimentosIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/descubra': typeof DescubraRoute
   '/linha-do-tempo': typeof LinhaDoTempoRoute
+  '/mapa': typeof MapaRoute
   '/playlists': typeof PlaylistsRoute
+  '/referencias': typeof ReferenciasRoute
+  '/sobre': typeof SobreRoute
   '/movimentos/$slug': typeof MovimentosSlugRoute
   '/movimentos/': typeof MovimentosIndexRoute
 }
@@ -67,26 +103,46 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/descubra'
     | '/linha-do-tempo'
+    | '/mapa'
     | '/playlists'
+    | '/referencias'
+    | '/sobre'
     | '/movimentos/$slug'
     | '/movimentos/'
   fileRoutesByTo: FileRoutesByTo
   to:
-    '/' | '/linha-do-tempo' | '/playlists' | '/movimentos/$slug' | '/movimentos'
+    | '/'
+    | '/descubra'
+    | '/linha-do-tempo'
+    | '/mapa'
+    | '/playlists'
+    | '/referencias'
+    | '/sobre'
+    | '/movimentos/$slug'
+    | '/movimentos'
   id:
     | '__root__'
     | '/'
+    | '/descubra'
     | '/linha-do-tempo'
+    | '/mapa'
     | '/playlists'
+    | '/referencias'
+    | '/sobre'
     | '/movimentos/$slug'
     | '/movimentos/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  DescubraRoute: typeof DescubraRoute
   LinhaDoTempoRoute: typeof LinhaDoTempoRoute
+  MapaRoute: typeof MapaRoute
   PlaylistsRoute: typeof PlaylistsRoute
+  ReferenciasRoute: typeof ReferenciasRoute
+  SobreRoute: typeof SobreRoute
   MovimentosSlugRoute: typeof MovimentosSlugRoute
   MovimentosIndexRoute: typeof MovimentosIndexRoute
 }
@@ -100,6 +156,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/descubra': {
+      id: '/descubra'
+      path: '/descubra'
+      fullPath: '/descubra'
+      preLoaderRoute: typeof DescubraRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/linha-do-tempo': {
       id: '/linha-do-tempo'
       path: '/linha-do-tempo'
@@ -107,11 +170,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LinhaDoTempoRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/mapa': {
+      id: '/mapa'
+      path: '/mapa'
+      fullPath: '/mapa'
+      preLoaderRoute: typeof MapaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/playlists': {
       id: '/playlists'
       path: '/playlists'
       fullPath: '/playlists'
       preLoaderRoute: typeof PlaylistsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/referencias': {
+      id: '/referencias'
+      path: '/referencias'
+      fullPath: '/referencias'
+      preLoaderRoute: typeof ReferenciasRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sobre': {
+      id: '/sobre'
+      path: '/sobre'
+      fullPath: '/sobre'
+      preLoaderRoute: typeof SobreRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/movimentos/': {
@@ -133,8 +217,12 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  DescubraRoute: DescubraRoute,
   LinhaDoTempoRoute: LinhaDoTempoRoute,
+  MapaRoute: MapaRoute,
   PlaylistsRoute: PlaylistsRoute,
+  ReferenciasRoute: ReferenciasRoute,
+  SobreRoute: SobreRoute,
   MovimentosSlugRoute: MovimentosSlugRoute,
   MovimentosIndexRoute: MovimentosIndexRoute,
 }
