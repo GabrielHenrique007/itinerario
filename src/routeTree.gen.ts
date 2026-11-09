@@ -10,33 +10,85 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as LinhaDoTempoRouteImport } from './routes/linha-do-tempo'
+import { Route as PlaylistsRouteImport } from './routes/playlists'
+import { Route as MovimentosIndexRouteImport } from './routes/movimentos.index'
+import { Route as MovimentosSlugRouteImport } from './routes/movimentos.$slug'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const LinhaDoTempoRoute = LinhaDoTempoRouteImport.update({
+  id: '/linha-do-tempo',
+  path: '/linha-do-tempo',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PlaylistsRoute = PlaylistsRouteImport.update({
+  id: '/playlists',
+  path: '/playlists',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MovimentosIndexRoute = MovimentosIndexRouteImport.update({
+  id: '/movimentos/',
+  path: '/movimentos/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MovimentosSlugRoute = MovimentosSlugRouteImport.update({
+  id: '/movimentos/$slug',
+  path: '/movimentos/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/linha-do-tempo': typeof LinhaDoTempoRoute
+  '/playlists': typeof PlaylistsRoute
+  '/movimentos/$slug': typeof MovimentosSlugRoute
+  '/movimentos/': typeof MovimentosIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/linha-do-tempo': typeof LinhaDoTempoRoute
+  '/playlists': typeof PlaylistsRoute
+  '/movimentos/$slug': typeof MovimentosSlugRoute
+  '/movimentos': typeof MovimentosIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/linha-do-tempo': typeof LinhaDoTempoRoute
+  '/playlists': typeof PlaylistsRoute
+  '/movimentos/$slug': typeof MovimentosSlugRoute
+  '/movimentos/': typeof MovimentosIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/linha-do-tempo'
+    | '/playlists'
+    | '/movimentos/$slug'
+    | '/movimentos/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    '/' | '/linha-do-tempo' | '/playlists' | '/movimentos/$slug' | '/movimentos'
+  id:
+    | '__root__'
+    | '/'
+    | '/linha-do-tempo'
+    | '/playlists'
+    | '/movimentos/$slug'
+    | '/movimentos/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  LinhaDoTempoRoute: typeof LinhaDoTempoRoute
+  PlaylistsRoute: typeof PlaylistsRoute
+  MovimentosSlugRoute: typeof MovimentosSlugRoute
+  MovimentosIndexRoute: typeof MovimentosIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +100,43 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/linha-do-tempo': {
+      id: '/linha-do-tempo'
+      path: '/linha-do-tempo'
+      fullPath: '/linha-do-tempo'
+      preLoaderRoute: typeof LinhaDoTempoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/playlists': {
+      id: '/playlists'
+      path: '/playlists'
+      fullPath: '/playlists'
+      preLoaderRoute: typeof PlaylistsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/movimentos/': {
+      id: '/movimentos/'
+      path: '/movimentos'
+      fullPath: '/movimentos/'
+      preLoaderRoute: typeof MovimentosIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/movimentos/$slug': {
+      id: '/movimentos/$slug'
+      path: '/movimentos/$slug'
+      fullPath: '/movimentos/$slug'
+      preLoaderRoute: typeof MovimentosSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  LinhaDoTempoRoute: LinhaDoTempoRoute,
+  PlaylistsRoute: PlaylistsRoute,
+  MovimentosSlugRoute: MovimentosSlugRoute,
+  MovimentosIndexRoute: MovimentosIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
