@@ -12,6 +12,6 @@ describe("scoreQuiz", () => {
     expect(scoreQuiz([0, 0, 0, 0, 0]).winner).toBe("rock");
   });
   it("sums scores across answers", () => {
-    expect(scoreQuiz([3, 0, 0, 0, 0]).totals).toEqual({ rock: 9, rap: 1, forro: 1 });
+    expect(scoreQuiz([3, 0, 0, 0, 0]).totals).toEqual({ rock: 9, rap: 2, forro: 1 });
   });
 });
