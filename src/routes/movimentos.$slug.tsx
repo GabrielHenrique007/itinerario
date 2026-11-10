@@ -24,7 +24,7 @@ function Page() {
   const m = getMovement(id)!;
   const p = playlists.find((x) => x.movement === id)!;
   const idx = movements.findIndex((x) => x.id === id);
-  const next = movements[(idx + 1) % movements.length];
+  const next = movements[(idx + 1) % movements.length]!;
   return (
     <div data-mv={id}>
       <section className="grain relative flex min-h-[85vh] items-end overflow-hidden">
