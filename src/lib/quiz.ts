@@ -64,6 +64,6 @@ export function scoreQuiz(answers: (number | null)[]): { winner: MovementId; tot
     for (const [k, v] of Object.entries(opt.scores)) totals[k as MovementId] += v ?? 0;
   });
   const order: MovementId[] = ["rock", "rap", "forro"];
-  const winner = order.reduce((best, id) => (totals[id] > totals[best] ? id : best), order[0]);
+  const winner = order.reduce<MovementId>((best, id) => (totals[id] > totals[best] ? id : best), "rock");
   return { winner, totals };
 }

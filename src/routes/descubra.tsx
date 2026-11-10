@@ -42,7 +42,7 @@ function Page() {
 
   if (done) return <Result answers={answers} onRestart={restart} />;
 
-  const q = quiz[step];
+  const q = quiz[step]!;
   const chosen = answers[step];
   return (
     <section className="mx-auto flex min-h-screen max-w-4xl flex-col justify-center px-5 pt-28 pb-16">
